@@ -1,0 +1,53 @@
+@import "lib/reset.less";
+
+.product {
+  border: 2px solid #f1efef;
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 40%;
+  border-radius: 27px;
+  
+  &:hover {
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  }
+  
+  img {
+    width: 100px;
+    height: auto;
+  }
+  
+  h2 {
+    font-size: 1.2em;
+    color: #333;
+    font-weight: 400;
+    position: relative;
+    display: inline-block;
+    bottom: 5vw;
+    left: 2vw;
+  }
+  
+  span {
+    font-size: 1em;
+    color: #0e0e0e;
+    position: relative;
+    right: 30vw;
+    bottom: 20vw;
+    font-weight: 900;
+  }
+  
+  @media screen and (max-width: 768px) {
+    width: 80%;
+    
+    h2 {
+      font-size: 1em;
+      bottom: 2vw;
+      left: 1vw;
+    }
+    
+    span {
+      font-size: 0.8em;
+      right: 10vw;
+      bottom: 8vw;
+    }
+  }
+}

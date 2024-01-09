@@ -1,0 +1,12 @@
+<?php
+$_product = $block->getProduct();
+?>
+
+<a href="<?= $block->escapeUrl($_product->getProductUrl()) ?>">
+    <div class="product">
+        <img src="<?= $block->escapeUrl($block->getImageUrl()) ?>" alt="<?= $block->escapeHtmlAttr($_product->getName()) ?>">
+        <h2><?= $block->escapeHtml($_product->getName()) ?></h2>
+        <?= /* @noEscape */ $_product->getFormattedPrice() ?>
+        <p class="stock"><?= $block->escapeHtml(__('In Stock: %1', $block->getStock())) ?></p>
+    </div>
+</a>
