@@ -7,45 +7,44 @@ use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Catalog\Helper\Image;
-use Magento\CatalogInventory\Model\StockRegistry;
 
 class Product extends Template implements \Magento\Framework\View\Element\Block\ArgumentInterface
-{
-    public function __construct(
-        Context $context,
-        protected ProductRepositoryInterface $_productRepository,
-        private Image $imageHelper,
-        private StockRegistry $stockRegistry,
-        array $data = []
-    ) {
-        parent::__construct($context, $data);
-    }
+{    /**
+    * @var array|\Magento\Checkout\Block\Checkout\LayoutProcessorInterface[]
+    */
+   protected $layoutProcessors;
 
-    /**
-     * Retrieves a product from the repository based on the given SKU.
-     *
-     * @return \Magento\Catalog\Api\Data\ProductInterface|null The product with the specified SKU, or null if not found.
-     */
-    public function getProduct()
-    {
-        return $this->_productRepository->getById(1);
-    }
+   public function __construct(
+       Template\Context $context,
+       private ProductRepositoryInterface $productRepository,
+       array $layoutProcessors = [],
+       array $data = []
+   ) {
+       parent::__construct($context, $data);
+       $this->jsLayout = isset($data['jsLayout']) && is_array($data['jsLayout']) ? $data['jsLayout'] : [];
+       $this->layoutProcessors = $layoutProcessors;
+   }
 
-    /**
-     * Retrieves the URL of the image associated with the product.
-     *
-     * @return string The URL of the image.
-     */
-    public function getImageUrl() {
-        return $this->imageHelper->init($this->getProduct(), 'product_page_image_small')->getUrl();
-    }
+   public function getJsLayout()
+   {
+       foreach ($this->layoutProcessors as $processor) {
+           $this->jsLayout = $processor->process($this->jsLayout);
+       }
 
-    /**
-     * Retrieves the stock quantity of the product.
-     *
-     * @return int The stock quantity of the product.
-     */
-    public function getStock() {
-        return $this->stockRegistry->getStockItem($this->getProduct()->getId())->getQty();
-    }
+        $product = $this->loadProduct(911);
+        $this->jsLayout['components']['product']['name'] = $product->getName();
+        $this->jsLayout['components']['product']['price'] = $product->getPrice();
+
+
+\Magento\Framework\App\ObjectManager::getInstance()
+->get('Psr\Log\LoggerInterface')
+->debug('teste = '. print_r($this->jsLayout, true));
+
+       return json_encode($this->jsLayout);
+   }
+
+   private function loadProduct($productId)
+   {
+       return $this->productRepository->getById($productId);
+   }
 }
