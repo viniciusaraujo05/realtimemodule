@@ -1,0 +1,26 @@
+{
+    "name": "goit/show-product-home",
+    "description": "Module to display product on the home page and update stock in real time",
+    "require": {
+        "php": "~8.1.0||~8.2.0",
+        "magento/product-community-edition": "2.4.6",
+        "magento/framework": "103.0.*"
+    },
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Goit\\ShowProductHome\\": ""
+        }
+     }
+ }
+ 
