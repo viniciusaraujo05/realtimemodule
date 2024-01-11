@@ -34,7 +34,7 @@ class Index extends \Magento\Framework\App\Action\Action
 
     public function execute()
     {
-        $product = $this->productFactory->create()->load(911);
+        $product = $this->productFactory->create()->load(1);
 
         $productData = [
             'name' => $product->getName(),
@@ -48,6 +48,6 @@ class Index extends \Magento\Framework\App\Action\Action
     }
 
     public function getStock() {
-        return $this->stockRegistry->getStockItem(911)->getQty();
+        return $this->stockRegistry->getStockItem(1)->getQty();
     }
 }

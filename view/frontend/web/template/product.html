@@ -1,6 +1,6 @@
 <div class="product-info" data-bind="width: 'product'">
-   <h2 data-bind="text: product.name"></h2>
-   <p data-bind="text: price"></p>
-   <p id="stock-info" data-bind="text: 'Em estoque: ' + product().stockQty"></p>
-   <img data-bind="attr: {src: product().src}" width="120" height="150" alt="Imagem do Produto">
+   <img data-bind="attr: {src: product().src}" width="200" height="150" alt="Imagem do Produto">
+   <h2 class="name" data-bind="text: product().name"></h2>
+   <p class="price" data-bind="text: product().price"></p>
+   <p class="stock" id="stock-info" data-bind="text: 'Em estoque: ' + product().stockQty"></p>
 </div>

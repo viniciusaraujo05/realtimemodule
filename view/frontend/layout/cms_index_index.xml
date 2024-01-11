@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="//www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+   <head>
+       <css src="Goit_ShowProductHome::css/styles.css"/>
+   </head>
    <body>
        <referenceBlock name="content">
            <block class="Goit\ShowProductHome\Block\Product" name="product" template="product.phtml">

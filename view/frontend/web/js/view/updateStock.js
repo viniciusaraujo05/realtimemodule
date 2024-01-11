@@ -11,12 +11,18 @@ define([
             template: 'Goit_ShowProductHome/product',
         },
 
-        product: ko.observable({}),
+        product: ko.observable({
+            name: '',
+            price: '',
+            stockQty: '',
+            src: ''
+        }),
 
         initialize: function () {
-            this._super();     
-                   
-            this.getProduct();
+            this._super(); 
+            console.log(this.getProduct);
+                
+            setInterval(this.getProduct(), 1000);
         },
 
         getProduct: function () {
@@ -29,8 +35,10 @@ define([
                     var productData = JSON.parse(response);
 
                     self.product({
-                        src: productData.imageUrl,
-                        stockQty: productData.stockQty
+                        name: productData.name,
+                        price: productData.price,
+                        stockQty: productData.stockQty,
+                        src: productData.src
                     });
                 }
             ).fail(
