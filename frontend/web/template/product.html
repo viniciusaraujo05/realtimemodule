@@ -1,0 +1,8 @@
+<a data-bind="attr: { href: product().url }">
+   <div class="product-info" data-bind="width: 'product'">
+      <img data-bind="attr: {src: product().src}" width="200" height="150" alt="Imagem do Produto">
+      <h2 class="name" data-bind="text: product().name"></h2>
+      <p class="price" data-bind="html: product().price"></p>
+      <p class="stock" id="stock-info" data-bind="text: 'Stock: ' + product().stockQty"></p>
+   </div>
+</a>

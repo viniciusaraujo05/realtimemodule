@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="//www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+   <head>
+       <css src="Goit_ShowProductHome::css/styles.css"/>
+   </head>
+   <body>
+       <referenceBlock name="content">
+           <block class="Goit\ShowProductHome\Block\Product" name="product" template="product.phtml">
+               <arguments>
+                   <argument name="jsLayout" xsi:type="array">
+                       <item name="components" xsi:type="array">
+                           <item name="product" xsi:type="array">
+                               <item name="component" xsi:type="string">Goit_ShowProductHome/js/view/updateStock</item>
+                           </item>
+                       </item>
+                   </argument>
+               </arguments>
+           </block>
+       </referenceBlock>
+   </body>
+</page>
